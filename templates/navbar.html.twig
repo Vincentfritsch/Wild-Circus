@@ -17,6 +17,17 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Billeterie</a>
             </li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Ajouter
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item " href="{{ path('act_new') }}">Ajouter un évènement</a>
+                        <a class="dropdown-item " href="{{ path('artist_new') }}">Ajouter un artiste</a>
+                    </div>
+                </li>
+            {% endif %}
             {% if app.user %}
             <li class="nav-item active">
                 <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter <span class="sr-only">(current)</span></a>
@@ -27,6 +38,9 @@
             {% else %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('app_login') }}">Se connecter</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_register') }}">S'inscrire</a>
             </li>
             {% endif %}
         </ul>

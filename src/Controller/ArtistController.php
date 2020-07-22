@@ -38,7 +38,7 @@ class ArtistController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($artist);
             $entityManager->flush();
-
+            $this->addFlash('success', 'L\'artiste a bien été enregistré');
             return $this->redirectToRoute('artist_index');
         }
 
@@ -68,6 +68,7 @@ class ArtistController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'L\'artiste a bien été mis à jour');
 
             return $this->redirectToRoute('artist_index');
         }
@@ -87,6 +88,7 @@ class ArtistController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($artist);
             $entityManager->flush();
+            $this->addFlash('danger', 'L\'artiste a bien été supprimé');
         }
 
         return $this->redirectToRoute('artist_index');

@@ -38,6 +38,7 @@ class ActController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($act);
             $entityManager->flush();
+            $this->addFlash('success', 'L\'évènement a bien été enregistré');
 
             return $this->redirectToRoute('act_index');
         }
@@ -68,6 +69,7 @@ class ActController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'L\'évènement a bien été mis à jour');
 
             return $this->redirectToRoute('act_index');
         }
@@ -87,6 +89,7 @@ class ActController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($act);
             $entityManager->flush();
+            $this->addFlash('danger', 'L\'évènement a bien été supprimé');
         }
 
         return $this->redirectToRoute('act_index');
