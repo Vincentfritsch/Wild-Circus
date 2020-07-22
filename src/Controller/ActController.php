@@ -26,7 +26,7 @@ class ActController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="act_new", methods={"GET","POST"})
+     * @Route("/admin/new", name="act_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -59,7 +59,7 @@ class ActController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="act_edit", methods={"GET","POST"})
+     * @Route("/admin/{id}/edit", name="act_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Act $act): Response
     {
@@ -79,7 +79,7 @@ class ActController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="act_delete", methods={"DELETE"})
+     * @Route("/admin/{id}", name="act_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Act $act): Response
     {
