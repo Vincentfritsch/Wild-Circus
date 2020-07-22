@@ -4,9 +4,13 @@ namespace App\Entity;
 
 use App\Repository\ArtistRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use DateTime;
 
 /**
  * @ORM\Entity(repositoryClass=ArtistRepository::class)
+ * @Vich\Uploadable
  */
 class Artist
 {
@@ -26,6 +30,18 @@ class Artist
      * @ORM\Column(type="string", length=255)
      */
     private $picture;
+
+    /**
+     * @Vich\UploadableField(mapping="artist",
+     *     fileNameProperty="picture")
+     * @var File
+     */
+    private $pictureFile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
 
     /**
      * @ORM\Column(type="text")
@@ -71,5 +87,20 @@ class Artist
         $this->bio = $bio;
 
         return $this;
+    }
+
+    public function setPictureFile(File $image = null): self
+    {
+        $this->pictureFile = $image;
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    public function getPictureFile(): ?File
+    {
+        return $this->pictureFile;
     }
 }
