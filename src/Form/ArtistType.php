@@ -21,7 +21,6 @@ class ArtistType extends AbstractType
                 'download_uri' => false, // not mandatory, default is true
                 'image_uri' => true,
             ])
-            ->add('updatedAt')
             ->add('bio',CKEditorType::class)
         ;
     }
